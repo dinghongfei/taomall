@@ -1,0 +1,1 @@
+1.目录/src/main/tools/下的压缩文件fastdfs_client.zip需要自行处理的maven依赖

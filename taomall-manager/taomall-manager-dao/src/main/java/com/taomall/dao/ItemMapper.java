@@ -2,6 +2,8 @@ package com.taomall.dao;
 
 import com.taomall.pojo.Item;
 
+import java.util.List;
+
 public interface ItemMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface ItemMapper {
     int updateByPrimaryKeySelective(Item record);
 
     int updateByPrimaryKey(Item record);
+
+    List<Item> selectList();
 }

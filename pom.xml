@@ -12,6 +12,7 @@
     <module>taomall-common</module>
     <module>taomall-manager</module>
     <module>taomall-manager-web</module>
+      <module>taomall-portal</module>
   </modules>
 
   <name>tao-mall-parent</name>
