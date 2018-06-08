@@ -2,6 +2,8 @@ package com.taomall.dao;
 
 import com.taomall.pojo.ContentCategory;
 
+import java.util.List;
+
 public interface ContentCategoryMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface ContentCategoryMapper {
     int updateByPrimaryKeySelective(ContentCategory record);
 
     int updateByPrimaryKey(ContentCategory record);
+
+    List<ContentCategory> selectListByParentId(Long parentId);
 }

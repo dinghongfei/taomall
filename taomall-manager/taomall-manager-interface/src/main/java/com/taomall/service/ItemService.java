@@ -14,7 +14,7 @@ public interface ItemService {
      * @param itemId
      * @return
      */
-    Item getItemById(long itemId);
+    Item getItemById(Long itemId);
 
     /**
      * 获取产品列表

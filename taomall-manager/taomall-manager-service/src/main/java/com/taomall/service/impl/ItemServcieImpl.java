@@ -25,7 +25,7 @@ public class ItemServcieImpl implements ItemService {
     private ItemDescMapper itemDescMapper;
 
     @Override
-    public Item getItemById(long itemId) {
+    public Item getItemById(Long itemId) {
         Item item = itemMapper.selectByPrimaryKey(itemId);
         return item;
     }

@@ -33,7 +33,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>taomall-manager-web</servlet-name>
-    <!-- 拦截所有请求jsp除外 -->
+    <!-- 拦截所有请求,jsp除外 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 

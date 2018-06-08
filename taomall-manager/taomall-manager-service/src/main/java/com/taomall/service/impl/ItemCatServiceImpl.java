@@ -26,7 +26,7 @@ public class ItemCatServiceImpl implements ItemCatService{
      * @return
      */
     @Override
-    public List<EasyUITreeNode> getItemCatList(long parentId) {
+    public List<EasyUITreeNode> getItemCatList(Long parentId) {
         List<ItemCat> itemCatList = itemCatMapper.selectListByParentId(parentId);
         //转换成EasyUITreeNode列表
         List<EasyUITreeNode> resultList = new ArrayList<>();

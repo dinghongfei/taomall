@@ -17,5 +17,5 @@ public interface ItemCatMapper {
 
     int updateByPrimaryKey(ItemCat record);
 
-    List<ItemCat> selectListByParentId(long parentId);
+    List<ItemCat> selectListByParentId(Long parentId);
 }

@@ -57,13 +57,16 @@
 
     </dependencies>
 
-    <!--mapper文件映射的添加，不配置的话打包后是没有映射文件的-->
-    <build>
+    <!--如果mapper映射文件不在resources目录下，需要配置此属性-->
+    <!--记得在mybatis的sqlSessionFactory中配置，不然加载不到-->
+    <!--<property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>-->
+
+    <!--<build>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-    </build>
+    </build>-->
 
 </project>
