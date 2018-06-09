@@ -14,6 +14,8 @@
       <module>taomall-manager-web</module>
       <module>taomall-portal-web</module>
       <module>taomall-content</module>
+      <module>taomall-search</module>
+      <module>taomall-search-web</module>
   </modules>
 
   <name>tao-mall-parent</name>

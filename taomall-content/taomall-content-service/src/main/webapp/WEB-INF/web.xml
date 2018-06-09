@@ -5,7 +5,7 @@
          id="WebApp_ID" version="2.5">
 
 
-  <display-name>taomall-manager</display-name>
+  <display-name>taomall-content</display-name>
 
   <!-- 初始化spring容器 -->
   <context-param>

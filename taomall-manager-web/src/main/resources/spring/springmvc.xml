@@ -30,9 +30,9 @@
 	<!-- 配置文件上传解析器 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 设定默认编码 -->
-		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="defaultEncoding" value="UTF-8"/>
 		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
-		<property name="maxUploadSize" value="5242880"></property>
+		<property name="maxUploadSize" value="5242880"/>
 	</bean>
 
 	<!-- 引用dubbo服务 -->
@@ -44,7 +44,8 @@
 	<dubbo:reference interface="com.taomall.service.ItemService" id="itemService"/>
 	<dubbo:reference interface="com.taomall.service.ItemCatService" id="itemCatService"/>
 	<dubbo:reference interface="com.taomall.content.service.ContentCategoryService" id="contentCategoryService"/>
-	<dubbo:reference interface="com.taomall.content.service.ContentService" id="ContentService"/>
+	<dubbo:reference interface="com.taomall.content.service.ContentService" id="contentService"/>
+	<dubbo:reference interface="com.taomall.search.service.SearchItemService" id="searchItemService"/>
 
 
 
