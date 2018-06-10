@@ -2,6 +2,7 @@ package com.taomall.search.dao;
 
 import com.taomall.common.pojo.SearchItem;
 import com.taomall.common.pojo.SearchResult;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -43,7 +44,12 @@ public class SearchDao {
             SearchItem searchItem = new SearchItem();
             searchItem.setCategory_name((String) solrDocument.get("item_category_name"));
             searchItem.setId((String) solrDocument.get("id"));
-            searchItem.setImage((String) solrDocument.get("item_image"));
+            //解析图片地址，取第一张
+            String image = (String) solrDocument.get("item_image");
+            if (StringUtils.isNotBlank(image)){
+                image = image.split(",")[0];
+            }
+            searchItem.setImage(image);
             searchItem.setPrice((Long) solrDocument.get("item_price"));
             searchItem.setSell_point((String) solrDocument.get("item_sell_point"));
             //取高亮显示

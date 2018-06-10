@@ -41,6 +41,7 @@ public class SolrJTest {
         solrServer.add(document);
         //提交
         solrServer.commit();
+
     }
 
     @Test
