@@ -20,9 +20,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- 配置包扫描器，扫描@Controller注解的类 -->
-	<context:component-scan base-package="com.taomall.search.controller"/>
+	<context:component-scan base-package="com.taomall.search"/>
 
-
+	<!--配置全局异常处理，我这里使用注解的方式，在GlobalExceptionResolver类里加了@Component，并且上面的包扫描器修改下-->
+	<!--<bean class="com.taomall.search.exception.GlobalExceptionResolver"/>-->
 
 	<!-- 引用dubbo服务 -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
