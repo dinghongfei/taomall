@@ -4,7 +4,7 @@ import com.taomall.common.pojo.SearchItem;
 import com.taomall.common.pojo.TaomallResult;
 import com.taomall.search.dao.SearchItemMapper;
 import com.taomall.search.service.SearchItemService;
-import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class SearchItemServiceImpl implements SearchItemService {
     @Autowired
     private SearchItemMapper searchItemMapper;
     @Autowired
-    private SolrServer solrServer;
+    private SolrClient solrServer;
 
     @Override
     public TaomallResult importItemsToIndex() {

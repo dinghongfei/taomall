@@ -3,8 +3,8 @@ package com.taomall.search.dao;
 import com.taomall.common.pojo.SearchItem;
 import com.taomall.common.pojo.SearchResult;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class SearchDao {
 
     @Autowired
-    private SolrServer solrServer;
+    private SolrClient solrServer;
 
 
     public SearchResult search(SolrQuery solrQuery) throws Exception{

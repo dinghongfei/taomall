@@ -2,19 +2,14 @@ package com.taomall.search.service.test;
 
 import com.taomall.common.pojo.TaomallResult;
 import com.taomall.search.service.SearchItemService;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.common.SolrInputDocument;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 
 public class SolrJTest {
 
@@ -25,6 +20,48 @@ public class SolrJTest {
         TaomallResult taomallResult = bean.importItemsToIndex();
         System.out.println(taomallResult);
     }
+
+    @Test
+    public void test1() throws IOException, SolrServerException {
+        CloudSolrClient cloudSolrClient = new CloudSolrClient.Builder().withZkHost("192.168.1.173:2181,192.168.1.173:2281,192.168.1.173:2381").build();
+        //CloudSolrClient cloudSolrClient = new CloudSolrClient.Builder().withSolrUrl("http://192.168.1.173:8180/solr").build();
+        //需要设置默认的Collection
+        cloudSolrClient.setDefaultCollection("collection");
+        //创建一个文档对
+        SolrInputDocument document = new SolrInputDocument();
+        //向文档中添加域
+        document.addField("id", "test001");
+        document.addField("item_title", "测试商品名称");
+        document.addField("item_price", 100);
+        //把文档写入索引库
+        cloudSolrClient.add(document);
+        //提交
+        cloudSolrClient.commit();
+
+    }
+
+
+   /* @Test
+    public void testSolrCloudAdDocument() throws Exception {
+        //创建一个CloudSolrServer对象，构造方法中需要制定zookeeper的地址列表
+        CloudSolrServer cloudSolrServer = new CloudSolrServer("192.168.1.173:2181,192.168.1.173:2281,192.168.1.173:2381");
+        //需要设置默认的Collection
+        cloudSolrServer.setDefaultCollection("collection");
+        //创建一个文档对
+        SolrInputDocument document = new SolrInputDocument();
+        //向文档中添加域
+        document.addField("id", "test001");
+        document.addField("item_title", "测试商品名称");
+        document.addField("item_price", 100);
+        //把文档写入索引库
+        cloudSolrServer.add(document);
+        //提交
+        cloudSolrServer.commit();
+
+    }
+
+
+
 
     @Test
     public void testAddDocument() throws Exception{
@@ -43,17 +80,24 @@ public class SolrJTest {
         solrServer.commit();
 
     }
+    */
 
     @Test
     public void deleteDocumentById() throws Exception{
         //创建一个solrServer对象，创建一个HttpSolrServer对象
         //需要指定solr服务的url
-        SolrServer solrServer = new HttpSolrServer("http://localhost:8080/solrCoreTest");
-        solrServer.deleteById("test01");
+        //SolrServer solrServer = new HttpSolrServer("http://localhost:8080/solrCoreTest");
+        //solrServer.deleteById("test01");
         //提交
-        solrServer.commit();
-    }
+        //solrServer.commit();
 
+
+        CloudSolrClient cloudSolrClient = new CloudSolrClient.Builder().withZkHost("192.168.1.173:2181,192.168.1.173:2281,192.168.1.173:2381").build();
+        cloudSolrClient.setDefaultCollection("collection");
+        cloudSolrClient.deleteById("test001");
+        cloudSolrClient.commit();
+    }
+/*
     @Test
     public void deleteDocumentByQuery() throws Exception{
         //创建一个solrServer对象，创建一个HttpSolrServer对象
@@ -110,7 +154,7 @@ public class SolrJTest {
         }
         //提交
         solrServer.commit();
-    }
+    }*/
 
 
 }
