@@ -53,6 +53,7 @@ public class SearchDao {
             searchItem.setPrice((Long) solrDocument.get("item_price"));
             searchItem.setSell_point((String) solrDocument.get("item_sell_point"));
             //取高亮显示
+            //高亮field的设置，应该是从solrQuery里面来取
             List<String> list = highlighting.get(solrDocument.get("id")).get("item_title");
             String title;
             if (list != null && list.size()>0) {
