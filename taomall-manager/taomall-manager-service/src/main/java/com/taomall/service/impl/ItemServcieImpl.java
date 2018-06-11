@@ -11,8 +11,12 @@ import com.taomall.pojo.Item;
 import com.taomall.pojo.ItemDesc;
 import com.taomall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +27,12 @@ public class ItemServcieImpl implements ItemService {
     private ItemMapper itemMapper;
     @Autowired
     private ItemDescMapper itemDescMapper;
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    //根据id获取
+    @Resource(name = "itemAddtopic")
+    private Destination destination;
 
     @Override
     public Item getItemById(Long itemId) {
@@ -64,6 +74,13 @@ public class ItemServcieImpl implements ItemService {
         itemDesc.setCreated(new Date());
         //向商品描述表插入数据
         itemDescMapper.insert(itemDesc);
+
+        //向activeMQ发送商品添加消息
+        jmsTemplate.send(destination, session -> {
+            TextMessage textMessage = session.createTextMessage(itemId + "");
+            return textMessage;
+        });
+
         //返回结果
         return TaomallResult.ok();
     }
