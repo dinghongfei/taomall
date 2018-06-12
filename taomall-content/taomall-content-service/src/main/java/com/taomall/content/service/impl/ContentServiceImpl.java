@@ -4,7 +4,7 @@ import com.taomall.common.pojo.TaomallResult;
 import com.taomall.common.utils.JsonUtils;
 import com.taomall.content.service.ContentService;
 import com.taomall.dao.ContentMapper;
-import com.taomall.jdeis.JedisClient;
+import com.taomall.jedis.JedisClient;
 import com.taomall.pojo.Content;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

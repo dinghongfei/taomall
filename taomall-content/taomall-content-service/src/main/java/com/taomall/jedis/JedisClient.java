@@ -1,4 +1,4 @@
-package com.taomall.jdeis;
+package com.taomall.jedis;
 
 public interface JedisClient {
 

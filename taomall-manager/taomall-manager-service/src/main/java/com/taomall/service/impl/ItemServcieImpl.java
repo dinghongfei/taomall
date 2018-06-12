@@ -5,11 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.taomall.common.pojo.EasyUIDataGridResult;
 import com.taomall.common.pojo.TaomallResult;
 import com.taomall.common.utils.IDUtils;
+import com.taomall.common.utils.JsonUtils;
 import com.taomall.dao.ItemDescMapper;
 import com.taomall.dao.ItemMapper;
+import com.taomall.jedis.JedisClient;
 import com.taomall.pojo.Item;
 import com.taomall.pojo.ItemDesc;
 import com.taomall.service.ItemService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -29,6 +32,8 @@ public class ItemServcieImpl implements ItemService {
     private ItemDescMapper itemDescMapper;
     @Autowired
     private JmsTemplate jmsTemplate;
+    @Autowired
+    private JedisClient jedisClient;
 
     //根据id获取
     @Resource(name = "itemAddtopic")
@@ -36,7 +41,26 @@ public class ItemServcieImpl implements ItemService {
 
     @Override
     public Item getItemById(Long itemId) {
+        //查缓存
+        try {
+            String json = jedisClient.get("ITEM_INFO:" + itemId + ":BASE");
+            if (StringUtils.isNotBlank(json)){
+                //json -> pojo
+                return JsonUtils.jsonToPojo(json, Item.class);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //缓存没有查数据库
         Item item = itemMapper.selectByPrimaryKey(itemId);
+        try {
+            //结果存缓存
+            jedisClient.set("ITEM_INFO:" + itemId + ":BASE",JsonUtils.objectToJson(item));
+            //设置过期时间
+            jedisClient.expire("ITEM_INFO:" + itemId + ":BASE", 86400);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         return item;
     }
 
@@ -87,7 +111,26 @@ public class ItemServcieImpl implements ItemService {
 
     @Override
     public ItemDesc getItemDescById(Long itemId) {
-
-        return itemDescMapper.selectByPrimaryKey(itemId);
+        //查缓存
+        try {
+            String json = jedisClient.get("ITEM_INFO:" + itemId + ":DESC");
+            if (StringUtils.isNotBlank(json)){
+                //json -> pojo
+                return JsonUtils.jsonToPojo(json, ItemDesc.class);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //缓存没有查数据库
+        ItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(itemId);
+        try {
+            //结果存缓存
+            jedisClient.set("ITEM_INFO:" + itemId + ":DESC",JsonUtils.objectToJson(itemDesc));
+            //设置过期时间
+            jedisClient.expire("ITEM_INFO:" + itemId + ":DESC", 86400);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return itemDesc;
     }
 }

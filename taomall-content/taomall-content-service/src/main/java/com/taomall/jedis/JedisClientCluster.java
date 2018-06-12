@@ -1,4 +1,4 @@
-package com.taomall.jdeis;
+package com.taomall.jedis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
