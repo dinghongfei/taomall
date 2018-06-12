@@ -30,7 +30,7 @@
 	<!-- 注册中心的地址 -->
 	<dubbo:registry protocol="zookeeper" address="192.168.1.173:2181" />
 	<!-- 引用的服务接口 -->
-	<dubbo:reference interface="com.taomall.content.service.ContentService" id="itemService"/>
+	<dubbo:reference interface="com.taomall.content.service.ContentService" id="contentService"/>
 
 
 

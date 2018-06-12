@@ -84,4 +84,10 @@ public class ItemServcieImpl implements ItemService {
         //返回结果
         return TaomallResult.ok();
     }
+
+    @Override
+    public ItemDesc getItemDescById(Long itemId) {
+
+        return itemDescMapper.selectByPrimaryKey(itemId);
+    }
 }

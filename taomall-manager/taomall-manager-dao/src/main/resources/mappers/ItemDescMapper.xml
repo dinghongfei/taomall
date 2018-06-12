@@ -6,6 +6,7 @@
       <arg column="item_id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="created" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="updated" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="item_desc" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.taomall.pojo.ItemDesc" >
@@ -16,6 +17,9 @@
       <arg column="item_desc" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+  <sql id="Base_Column_List" >
+    item_id,created,updated,item_desc
+  </sql>
   <sql id="Blob_Column_List" >
     item_desc
   </sql>
@@ -56,4 +60,13 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_item_desc
+    where item_id = #{itemId}
+  </select>
+
+
 </mapper>

@@ -16,6 +16,7 @@
       <module>taomall-content</module>
       <module>taomall-search</module>
       <module>taomall-search-web</module>
+      <module>taomall-item-web</module>
   </modules>
 
   <name>tao-mall-parent</name>

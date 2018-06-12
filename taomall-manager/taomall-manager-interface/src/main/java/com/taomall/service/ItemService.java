@@ -3,6 +3,7 @@ package com.taomall.service;
 import com.taomall.common.pojo.EasyUIDataGridResult;
 import com.taomall.common.pojo.TaomallResult;
 import com.taomall.pojo.Item;
+import com.taomall.pojo.ItemDesc;
 
 /**
  * @author dhf
@@ -25,6 +26,8 @@ public interface ItemService {
     EasyUIDataGridResult<Item> getItemList(int pageNum,int pageSize);
 
     TaomallResult addItem(Item item,String desc);
+
+    ItemDesc getItemDescById(Long itemId);
 
 
 
