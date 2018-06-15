@@ -12,7 +12,7 @@
     <artifactId>tao-mall-portal-web</artifactId>
     <packaging>war</packaging>
 
-    <name>tao-mall-sso-web Maven Webapp</name>
+    <name>tao-mall-portal-web Maven Webapp</name>
     <url>http://www.example.com</url>
 
     <dependencies>
@@ -129,7 +129,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <path>/</path>
-                    <port>8088</port>
+                    <port>8082</port>
                 </configuration>
             </plugin>
         </plugins>

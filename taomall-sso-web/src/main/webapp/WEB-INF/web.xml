@@ -38,8 +38,8 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>taomall-sso-web</servlet-name>
-    <!-- 网页的伪静态化 -->
-    <url-pattern>*.html</url-pattern>
+    <!-- 这里的拦截形式一定要注意，严格按照接口文档来 -->
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
 </web-app>

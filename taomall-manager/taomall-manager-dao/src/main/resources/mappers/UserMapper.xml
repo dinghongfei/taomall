@@ -116,4 +116,35 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByUserName" parameterType="string" resultType="int">
+    SELECT count(1)
+    FROM tb_user
+    WHERE username = #{userName}
+  </select>
+
+  <select id="selectByPhone" parameterType="string" resultType="int">
+    SELECT count(1)
+    FROM tb_user
+    WHERE phone = #{phone}
+  </select>
+
+  <select id="selectByEmail" parameterType="string" resultType="int">
+    SELECT count(1)
+    FROM tb_user
+    WHERE email = #{email}
+  </select>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+      tb_user
+    WHERE
+      username = #{userName}
+      AND
+      password = #{password}
+  </select>
+
+
 </mapper>

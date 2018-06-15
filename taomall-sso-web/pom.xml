@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>com.tao.mall</groupId>
-            <artifactId>tao-mall-content-interface</artifactId>
+            <artifactId>tao-mall-sso-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -129,7 +129,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <path>/</path>
-                    <port>8082</port>
+                    <port>8088</port>
                 </configuration>
             </plugin>
         </plugins>

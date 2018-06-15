@@ -18,7 +18,7 @@
       <module>taomall-search-web</module>
       <module>taomall-item-web</module>
       <module>taomall-sso</module>
-      <module>taomall-sso-web</module>
+    <module>taomall-sso-web</module>
   </modules>
 
   <name>tao-mall-parent</name>
