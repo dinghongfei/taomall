@@ -20,6 +20,8 @@
       <module>taomall-sso</module>
     <module>taomall-sso-web</module>
       <module>taomall-cart-web</module>
+      <module>taomall-order</module>
+    <module>taomall-order-web</module>
   </modules>
 
   <name>tao-mall-parent</name>
