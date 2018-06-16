@@ -22,6 +22,14 @@
 	<!-- 配置包扫描器，扫描@Controller注解的类 -->
 	<context:component-scan base-package="com.taomall.order.controller"/>
 
+	<!--配置拦截器-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**"/>
+			<bean class="com.taomall.order.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 
 
 	<!-- 引用dubbo服务 -->
@@ -30,7 +38,8 @@
 	<!-- 注册中心的地址 -->
 	<dubbo:registry protocol="zookeeper" address="192.168.1.173:2181" />
 	<!-- 引用的服务接口 -->
-	<!--<dubbo:reference interface="com.taomall.content.service.ContentService" id="contentService"/>-->
+	<dubbo:reference interface="com.taomall.sso.service.UserService" id="userService"/>
+	<dubbo:reference interface="com.taomall.order.service.OrderService" id="orderService"/>
 
 
 
